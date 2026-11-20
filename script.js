@@ -1,4 +1,4 @@
-// Add the phone number in international format, digits only, for example: 34612345678.
+ // Add the phone number in international format, digits only, for example: 34612345678.
 const PHONE_NUMBER = "34677672741";
 
 const translations = {
@@ -373,3 +373,407 @@ const year = document.querySelector("[data-year]");
 if (year) {
   year.textContent = new Date().getFullYear();
 }
+
+// Progressive visual enhancements
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const progress = document.createElement("div");
+progress.className = "scroll-progress";
+progress.setAttribute("aria-hidden", "true");
+document.body.appendChild(progress);
+
+function updateScrollEffects() {
+  const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = scrollMax > 0 ? window.scrollY / scrollMax : 0;
+  progress.style.transform = `scaleX(${ratio})`;
+
+  document.querySelector(".site-header")?.classList.toggle("is-scrolled", window.scrollY > 24);
+
+  if (!reduceMotion) {
+    const heroPhoto = document.querySelector(".hero-photo");
+    if (heroPhoto && window.scrollY < window.innerHeight) {
+      heroPhoto.style.transform = `scale(1.015) translateY(${window.scrollY * 0.08}px)`;
+    }
+  }
+}
+
+updateScrollEffects();
+window.addEventListener("scroll", updateScrollEffects, { passive: true });
+
+const revealTargets = [
+  ...document.querySelectorAll(".intro-body"),
+  ...document.querySelectorAll(".intro-note"),
+  ...document.querySelectorAll(".section-heading"),
+  ...document.querySelectorAll(".service-card"),
+  ...document.querySelectorAll(".showcase-heading"),
+  ...document.querySelectorAll(".garden-photo"),
+  ...document.querySelectorAll(".care-heading"),
+  ...document.querySelectorAll(".care-steps article"),
+  ...document.querySelectorAll(".promise-content"),
+  ...document.querySelectorAll(".contact-copy"),
+  ...document.querySelectorAll(".contact-card")
+];
+
+revealTargets.forEach((element, index) => {
+  element.classList.add("reveal");
+  if (index % 4 === 1) element.classList.add("reveal-delay-1");
+  if (index % 4 === 2) element.classList.add("reveal-delay-2");
+  if (index % 4 === 3) element.classList.add("reveal-delay-3");
+});
+
+if ("IntersectionObserver" in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px" });
+
+  revealTargets.forEach((element) => revealObserver.observe(element));
+} else {
+  revealTargets.forEach((element) => element.classList.add("is-visible"));
+}
+
+if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+  const glow = document.createElement("div");
+  glow.className = "cursor-glow";
+  glow.setAttribute("aria-hidden", "true");
+  document.body.appendChild(glow);
+
+  window.addEventListener("pointermove", (event) => {
+    glow.classList.add("is-visible");
+    glow.style.left = `${event.clientX}px`;
+    glow.style.top = `${event.clientY}px`;
+  }, { passive: true });
+
+  document.documentElement.addEventListener("mouseleave", () => glow.classList.remove("is-visible"));
+
+  document.querySelectorAll(".button, .nav-cta").forEach((element) => {
+    element.addEventListener("pointermove", (event) => {
+      const rect = element.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      element.style.transform = `translate(${x * 0.025}px, ${y * 0.025}px)`;
+    });
+    element.addEventListener("pointerleave", () => {
+      element.style.transform = "";
+    });
+  });
+}
+
+// Extra cinematic interactions
+if (!reduceMotion) {
+  const hero = document.querySelector(".hero");
+  if (hero) {
+    for (let i = 0; i < 9; i += 1) {
+      const particle = document.createElement("span");
+      particle.className = "particle";
+      particle.style.left = `${8 + Math.random() * 84}%`;
+      particle.style.top = `${18 + Math.random() * 68}%`;
+      particle.style.setProperty("--particle-time", `${6 + Math.random() * 7}s`);
+      particle.style.setProperty("--particle-delay", `${Math.random() * -8}s`);
+      particle.style.opacity = `${0.25 + Math.random() * 0.5}`;
+      hero.appendChild(particle);
+    }
+  }
+
+  document.querySelectorAll(".service-card").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      if (window.matchMedia("(pointer: fine)").matches) {
+        const rect = card.getBoundingClientRect();
+        const rotateY = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
+        const rotateX = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      }
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
+  });
+
+  const imageParallaxTargets = document.querySelectorAll(".garden-photo img, .promise-photo");
+  window.addEventListener("scroll", () => {
+    imageParallaxTargets.forEach((image) => {
+      const rect = image.parentElement.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -0.035;
+        if (image.classList.contains("promise-photo")) {
+          image.style.backgroundPosition = `center calc(46% + ${offset}px)`;
+        } else {
+          image.style.transform = `scale(1.08) translateY(${offset}px)`;
+        }
+      }
+    });
+  }, { passive: true });
+
+  const observedSections = document.querySelectorAll(".garden-showcase, .care, .promise");
+  if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in-view");
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    observedSections.forEach((section) => sectionObserver.observe(section));
+
+    document.querySelectorAll(".care-steps article").forEach((step) => {
+      const stepObserver = new IntersectionObserver((entries, observer) => {
+        if (entries[0].isIntersecting) {
+          entries[0].target.classList.add("is-in-view");
+          observer.unobserve(entries[0].target);
+        }
+      }, { threshold: 0.65 });
+      stepObserver.observe(step);
+    });
+  }
+
+  const navLinks = [...document.querySelectorAll(".main-nav a[href^='#']")];
+  const navTargets = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          link.classList.toggle("is-current", link.getAttribute("href") === `#${entry.target.id}`);
+        });
+      });
+    }, { rootMargin: "-35% 0px -55%", threshold: 0 });
+    navTargets.forEach((target) => navObserver.observe(target));
+  }
+
+  let lastSectionKey = "";
+  window.addEventListener("scroll", () => {
+    const visible = [...observedSections].find((section) => {
+      const rect = section.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.45 && rect.bottom > window.innerHeight * 0.45;
+    });
+    const key = visible?.className || "";
+    if (key && key !== lastSectionKey) {
+      lastSectionKey = key;
+      const flash = document.createElement("div");
+      flash.className = "section-flash";
+      document.body.appendChild(flash);
+      window.setTimeout(() => flash.remove(), 600);
+    }
+  }, { passive: true });
+
+  window.setTimeout(() => {
+    chatWidget?.classList.add("is-bouncing");
+  }, 4500);
+}
+
+// Page loader
+document.body.classList.add("is-loading");
+const pageLoader = document.querySelector(".page-loader");
+window.addEventListener("load", () => {
+  window.setTimeout(() => {
+    pageLoader?.classList.add("is-hidden");
+    document.body.classList.remove("is-loading");
+  }, reduceMotion ? 80 : 1900);
+});
+
+const loaderValue = document.querySelector(".loader-progress-value");
+if (loaderValue && !reduceMotion) {
+  const loaderStart = performance.now();
+  const loaderDuration = 1900;
+  function animateLoaderCounter(now) {
+    const progress = Math.min((now - loaderStart) / loaderDuration, 1);
+    loaderValue.textContent = String(Math.round(progress * 100)).padStart(2, "0");
+    if (progress < 1) requestAnimationFrame(animateLoaderCounter);
+  }
+  requestAnimationFrame(animateLoaderCounter);
+}
+
+// Custom cursor
+if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+  const customCursor = document.querySelector(".custom-cursor");
+  if (customCursor) {
+    window.addEventListener("pointermove", (event) => {
+      customCursor.classList.add("is-visible");
+      customCursor.style.left = `${event.clientX}px`;
+      customCursor.style.top = `${event.clientY}px`;
+    }, { passive: true });
+
+    document.querySelectorAll("a, button, textarea, .service-card").forEach((element) => {
+      element.addEventListener("pointerenter", () => customCursor.classList.add("is-hovering"));
+      element.addEventListener("pointerleave", () => customCursor.classList.remove("is-hovering"));
+    });
+
+    document.documentElement.addEventListener("mouseleave", () => customCursor.classList.remove("is-visible"));
+  }
+}
+
+// Add subtle ambient waves to the final image section
+const promiseSection = document.querySelector(".promise");
+if (promiseSection && !promiseSection.querySelector(".ambient-waves")) {
+  const waves = document.createElement("div");
+  waves.className = "ambient-waves";
+  waves.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < 5; i += 1) {
+    const wave = document.createElement("span");
+    wave.style.setProperty("--wave-width", `${70 + i * 24}px`);
+    wave.style.setProperty("--wave-height", `${16 + i * 7}px`);
+    wave.style.setProperty("--wave-delay", `${i * -0.7}s`);
+    waves.appendChild(wave);
+  }
+  promiseSection.appendChild(waves);
+}
+
+// Opt-in calm generative melody using Web Audio API
+const soundButton = document.createElement("button");
+soundButton.className = "sound-toggle";
+soundButton.type = "button";
+soundButton.setAttribute("aria-label", "Включить атмосферную музыку");
+soundButton.setAttribute("aria-pressed", "false");
+soundButton.innerHTML = '<span class="sound-tooltip">Включить музыку</span><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+document.body.appendChild(soundButton);
+
+let audioContext = null;
+let masterGain = null;
+let musicNodes = [];
+let soundPlaying = false;
+let chordTimer = null;
+let chordIndex = 0;
+let padOscillators = [];
+let melodyTimer = null;
+let melodyIndex = 0;
+
+function createAmbientSound() {
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioContext.createGain();
+  masterGain.gain.value = 0;
+  const compressor = audioContext.createDynamicsCompressor();
+  compressor.threshold.value = -28;
+  compressor.knee.value = 20;
+  compressor.ratio.value = 2.5;
+  compressor.attack.value = 0.12;
+  compressor.release.value = 0.7;
+  masterGain.connect(compressor);
+  compressor.connect(audioContext.destination);
+
+  const impulseLength = audioContext.sampleRate * 3.6;
+  const impulse = audioContext.createBuffer(2, impulseLength, audioContext.sampleRate);
+  for (let channel = 0; channel < 2; channel += 1) {
+    const data = impulse.getChannelData(channel);
+    for (let i = 0; i < impulseLength; i += 1) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / impulseLength, 3);
+    }
+  }
+  const reverb = audioContext.createConvolver();
+  reverb.buffer = impulse;
+  const reverbGain = audioContext.createGain();
+  reverbGain.gain.value = 0.46;
+  masterGain.connect(reverb);
+  reverb.connect(reverbGain);
+  reverbGain.connect(compressor);
+
+  const padFilter = audioContext.createBiquadFilter();
+  padFilter.type = "lowpass";
+  padFilter.frequency.value = 720;
+  padFilter.Q.value = 0.4;
+  padFilter.connect(masterGain);
+
+  const lfo = audioContext.createOscillator();
+  const lfoGain = audioContext.createGain();
+  lfo.frequency.value = 0.042;
+  lfoGain.gain.value = 110;
+  lfo.connect(lfoGain);
+  lfoGain.connect(padFilter.frequency);
+  lfo.start();
+  musicNodes.push(lfo);
+
+  const chords = [
+    [130.81, 164.81, 196],
+    [146.83, 174.61, 220],
+    [123.47, 164.81, 196],
+    [110, 164.81, 196]
+  ];
+  const melody = [261.63, 329.63, 392, 329.63, 293.66, 246.94, 329.63, 246.94];
+
+  function setChord() {
+    const chord = chords[chordIndex % chords.length];
+    chordIndex += 1;
+    padOscillators.forEach((oscillator, index) => {
+      oscillator.frequency.cancelScheduledValues(audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(chord[index % chord.length], audioContext.currentTime + 5.2);
+    });
+  }
+
+  chords[0].forEach((frequency, index) => {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.type = index === 0 ? "sine" : "triangle";
+    oscillator.frequency.value = frequency;
+    oscillator.detune.value = index * 2 - 2;
+    gain.gain.value = index === 0 ? 0.022 : 0.009;
+    oscillator.connect(gain);
+    gain.connect(padFilter);
+    oscillator.start();
+    musicNodes.push(oscillator);
+    padOscillators.push(oscillator);
+  });
+
+  function playMelodyNote() {
+    if (!soundPlaying) return;
+
+    const now = audioContext.currentTime;
+    const frequency = melody[melodyIndex % melody.length];
+    melodyIndex += 1;
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+    const pan = audioContext.createStereoPanner ? audioContext.createStereoPanner() : null;
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+    oscillator.detune.value = melodyIndex % 3 === 0 ? 4 : -3;
+    filter.type = "lowpass";
+    filter.frequency.value = 1200;
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.018, now + 0.8);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.4);
+
+    oscillator.connect(filter);
+    filter.connect(gain);
+    if (pan) {
+      pan.pan.value = Math.sin(melodyIndex * 0.9) * 0.38;
+      gain.connect(pan);
+      pan.connect(masterGain);
+    } else {
+      gain.connect(masterGain);
+    }
+    oscillator.start(now);
+    oscillator.stop(now + 3.5);
+  }
+
+  chordTimer = window.setInterval(setChord, 9000);
+  melodyTimer = window.setInterval(playMelodyNote, 4200);
+}
+
+soundButton.addEventListener("click", async () => {
+  if (!audioContext) {
+    createAmbientSound();
+  }
+
+  if (audioContext.state === "suspended") {
+    await audioContext.resume();
+  }
+
+  soundPlaying = !soundPlaying;
+  masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, audioContext.currentTime);
+  masterGain.gain.linearRampToValueAtTime(soundPlaying ? 0.065 : 0, audioContext.currentTime + 1.8);
+
+  soundButton.classList.toggle("is-playing", soundPlaying);
+  soundButton.setAttribute("aria-pressed", String(soundPlaying));
+  soundButton.setAttribute("aria-label", soundPlaying ? "Выключить атмосферную музыку" : "Включить атмосферную музыку");
+  soundButton.querySelector(".sound-tooltip").textContent = soundPlaying ? "Выключить музыку" : "Включить музыку";
+});
