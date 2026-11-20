@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#244936">
+    <meta name="description" content="Уход за садами, бассейнами и пальмами в Марбелье. Полив, сезонное обслуживание и забота о вашем участке.">
+    <title>Jardinería del Sol | Сады и бассейны в Марбелье</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Jardinería del Sol — на главную" data-i18n-aria-label="brandAria">
+        <span class="brand-mark" aria-hidden="true">J</span>
+        <span class="brand-name">Jardinería <span class="brand-light">del Sol</span></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация" data-i18n-aria-label="navAria">
+        <a href="#servicios" data-i18n="navServices">Услуги</a>
+        <a href="#nosotros" data-i18n="navAbout">О нас</a>
+        <a href="#contacto" data-i18n="navContact">Контакты</a>
+        <a class="nav-cta" href="#contacto"><span data-i18n="navCta">Заказать уход</span><span aria-hidden="true">↗</span></a>
+      </nav>
+      <div class="header-tools">
+        <div class="language-switch" role="group" aria-label="Выбрать язык" data-i18n-aria-label="languageAria">
+          <button type="button" class="language-button is-active" data-lang="ru" aria-pressed="true">RU</button>
+          <button type="button" class="language-button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="language-button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню" data-i18n-aria-label="menuOpen">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-photo" role="img" aria-label="Цветущий средиземноморский сад" data-i18n-aria-label="heroImage"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="heroEyebrow">САДЫ, КОТОРЫЕ РАДУЮТ КАЖДЫЙ ДЕНЬ</span></p>
+          <h1 data-i18n-html="heroTitle">Ваш сад —<br>ваше место <em>силы.</em></h1>
+          <p class="hero-copy" data-i18n="heroCopy">Ухоженные сады, чистые бассейны и здоровые пальмы в Марбелье. Берём заботу о вашем участке на себя.</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#servicios"><span data-i18n="heroButton">Посмотреть услуги</span><span aria-hidden="true">↗</span></a>
+            <a class="text-link call-link" href="#contacto" data-phone-link><span data-i18n="callNow">Позвонить</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-note"><span class="note-dot"></span><span data-i18n="location">Марбелья · Коста-дель-Соль</span></div>
+        <a class="scroll-cue" href="#servicios" aria-label="Прокрутить к услугам" data-i18n-aria-label="scrollAria"><span></span><span data-i18n="scroll">ЛИСТАЙТЕ</span></a>
+        <div class="hero-stamp"><span>JARDINERÍA</span><span class="stamp-leaf">✳</span><span>DEL SOL</span></div>
+      </section>
+
+      <section class="intro section-wrap" id="nosotros">
+        <div class="intro-label"><span>01</span><span data-i18n="introLabel">МЕСТНАЯ БРИГАДА</span></div>
+        <div class="intro-body">
+          <p class="eyebrow eyebrow-dark"><span class="eyebrow-line"></span><span data-i18n="introEyebrow">ЗАБОТА С ХАРАКТЕРОМ</span></p>
+          <h2 data-i18n-html="introTitle">Сад — это не просто участок.<br>Это <em>ваше место отдыха.</em></h2>
+          <p data-i18n="introCopy">Мы — дружная бригада в Марбелье. Регулярно ухаживаем за садами и бассейнами, следим за растениями, поливом и чистотой, чтобы на улице хотелось проводить время.</p>
+          <a class="underlined-link" href="#contacto"><span data-i18n="introLink">Расскажите, что нужно вашему саду</span><span aria-hidden="true">→</span></a>
+        </div>
+        <div class="intro-note">
+          <span class="leaf-sprig" aria-hidden="true">❧</span>
+          <p data-i18n="introNote">Внимание к каждой пальме, каждому цветку и каждому уголку.</p>
+        </div>
+      </section>
+
+      <section class="services section-wrap" id="servicios">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark"><span class="eyebrow-line"></span><span data-i18n="servicesEyebrow">ЧЕМ МЫ ПОМОЖЕМ</span></p>
+            <h2 data-i18n-html="servicesTitle">Всё для вашего <em>зелёного уголка.</em></h2>
+          </div>
+          <p data-i18n="servicesCopy">Комплексный уход — от регулярной уборки до сезонных работ. Можно выбрать одну услугу или доверить нам весь участок.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="service-number">01</span><span class="service-icon" aria-hidden="true">✿</span>
+            <h3 data-i18n="serviceGardenTitle">Уход за садом</h3>
+            <p data-i18n="serviceGardenCopy">Стрижка газона, прополка, уборка листвы, уход за клумбами и живыми изгородями.</p>
+            <a href="#contacto" aria-label="Узнать об уходе за садом" data-i18n-aria-label="serviceGardenAria">↗</a>
+          </article>
+          <article class="service-card">
+            <span class="service-number">02</span><span class="service-icon" aria-hidden="true">⌁</span>
+            <h3 data-i18n="servicePoolTitle">Чистка бассейна</h3>
+            <p data-i18n="servicePoolCopy">Уборка чаши и зоны вокруг бассейна — чисто и приятно для отдыха.</p>
+            <a href="#contacto" aria-label="Узнать о чистке бассейна" data-i18n-aria-label="servicePoolAria">↗</a>
+          </article>
+          <article class="service-card">
+            <span class="service-number">03</span><span class="service-icon" aria-hidden="true">♧</span>
+            <h3 data-i18n="servicePalmTitle">Уход за пальмами</h3>
+            <p data-i18n="servicePalmCopy">Обрезка сухих листьев и уборка пальм — аккуратно и с заботой об участке.</p>
+            <a href="#contacto" aria-label="Узнать об уходе за пальмами" data-i18n-aria-label="servicePalmAria">↗</a>
+          </article>
+          <article class="service-card">
+            <span class="service-number">04</span><span class="service-icon" aria-hidden="true">❋</span>
+            <h3 data-i18n="serviceWaterTitle">Полив и растения</h3>
+            <p data-i18n="serviceWaterCopy">Полив сада и внимание к растениям с учётом жары и особенностей участка.</p>
+            <a href="#contacto" aria-label="Узнать о поливе сада" data-i18n-aria-label="serviceWaterAria">↗</a>
+          </article>
+        </div>
+        <div class="service-footnote"><span aria-hidden="true">✳</span><span data-i18n="serviceFootnote">Работаем в Марбелье и ближайших районах. Объём и частоту ухода обсудим заранее.</span></div>
+      </section>
+
+      <section class="garden-showcase">
+        <div class="showcase-heading">
+          <p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="showcaseEyebrow">ЗЕЛЕНЬ, ЦВЕТ И СВЕЖЕСТЬ</span></p>
+          <h2 data-i18n-html="showcaseTitle">Больше времени<br>на <em>жизнь в саду.</em></h2>
+          <p data-i18n="showcaseCopy">Поддерживаем красоту сада в любое время года — от цветущих клумб до опрятных пальм и чистой воды.</p>
+          <a class="button button-outline" href="#contacto"><span data-i18n="showcaseButton">Обсудить уход</span><span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="showcase-collage">
+          <figure class="garden-photo garden-photo-large">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1100&q=85" alt="Нежные цветы в саду" data-i18n-alt="flowersAlt">
+            <figcaption><span>01</span><span data-i18n="captionFlowers">ЦВЕТУЩИЕ КЛУМБЫ</span></figcaption>
+          </figure>
+          <figure class="garden-photo garden-photo-small">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85" alt="Уход за садовыми растениями" data-i18n-alt="plantsAlt">
+            <figcaption><span>02</span><span data-i18n="captionPlants">ЗАБОТА О РАСТЕНИЯХ</span></figcaption>
+          </figure>
+          <span class="collage-flower" aria-hidden="true">✿</span>
+        </div>
+      </section>
+
+      <section class="care section-wrap">
+        <div class="care-heading">
+          <p class="eyebrow eyebrow-dark"><span class="eyebrow-line"></span><span data-i18n="careEyebrow">ПРОСТО И ПОНЯТНО</span></p>
+          <h2 data-i18n-html="careTitle">Уход, который подходит<br><em>именно вашему саду.</em></h2>
+          <p data-i18n="careCopy">У всех участков свои задачи. Сначала знакомимся с садом, потом вместе решаем, что и как часто нужно делать.</p>
+        </div>
+        <div class="care-steps">
+          <article><span>01</span><div><h3 data-i18n="stepOneTitle">Знакомимся</h3><p data-i18n="stepOneCopy">Вы рассказываете о саде, бассейне и о том, что хотелось бы улучшить.</p></div></article>
+          <article><span>02</span><div><h3 data-i18n="stepTwoTitle">Составляем план</h3><p data-i18n="stepTwoCopy">Обсуждаем подходящие работы, удобный график и нужную частоту приездов.</p></div></article>
+          <article><span>03</span><div><h3 data-i18n="stepThreeTitle">Поддерживаем порядок</h3><p data-i18n="stepThreeCopy">Регулярно ухаживаем за участком и остаёмся на связи по текущим задачам.</p></div></article>
+        </div>
+      </section>
+
+      <section class="promise">
+        <div class="promise-photo" role="img" aria-label="Зелёные растения в ухоженном саду" data-i18n-aria-label="promiseImage"></div>
+        <div class="promise-content">
+          <p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="promiseEyebrow">ВАШ САД В ХОРОШИХ РУКАХ</span></p>
+          <h2 data-i18n-html="promiseTitle">Пусть за окном<br>будет <em>красиво.</em></h2>
+          <p data-i18n="promiseCopy">Расскажите, что нужно вашему саду. Обсудим задачу и подберём удобный формат ухода.</p>
+          <a class="button button-light" href="#contacto"><span data-i18n="promiseButton">Связаться с нами</span><span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="promise-caption" data-i18n="promiseCaption">ЗЕЛЁНЫЕ ПРОСТРАНСТВА ДЛЯ ЖИЗНИ</div>
+      </section>
+
+      <section class="contact section-wrap" id="contacto">
+        <div class="contact-copy">
+          <p class="eyebrow eyebrow-dark"><span class="eyebrow-line"></span><span data-i18n="contactEyebrow">ДАВАЙТЕ ПОЗНАКОМИМСЯ</span></p>
+          <h2 data-i18n-html="contactTitle">Ваш сад готов<br>к <em>переменам?</em></h2>
+          <p data-i18n="contactCopy">Расскажите, что нужно вашему саду. Работаем в Марбелье и ближайших районах.</p>
+          <div class="contact-tip"><span aria-hidden="true">✿</span><p data-i18n="contactTip">Отправьте фото участка в WhatsApp — обсудим, какой уход подойдёт вашему саду.</p></div>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card-label" data-i18n="contactCallLabel">ПОЗВОНИТЕ НАМ</span>
+          <a class="contact-phone call-link" href="#contacto" data-phone-link data-phone-display>+34 XXX XXX XXX</a>
+          <span class="contact-location"><span aria-hidden="true">⌖</span><span data-i18n="contactLocation">Марбелья и окрестности</span></span>
+          <a class="button button-green call-link" href="#contacto" data-phone-link><span data-i18n="callNow">Позвонить</span><span aria-hidden="true">↗</span></a>
+          <a class="button button-whatsapp" href="#contacto" data-whatsapp-link target="_blank" rel="noopener noreferrer"><span data-i18n="whatsappButton">Написать в WhatsApp</span><span aria-hidden="true">↗</span></a>
+          <p class="phone-hint" data-phone-hint></p>
+        </div>
+      </section>
+    </main>
+
+    <section class="chat-widget" id="chat-widget" role="dialog" aria-labelledby="chat-title" aria-hidden="true" hidden>
+      <div class="chat-header">
+        <div class="chat-brand">
+          <span class="chat-avatar" aria-hidden="true">J</span>
+          <span><strong id="chat-title">Jardinería del Sol</strong><small data-i18n="chatSubtitle">Бригада по уходу за садами</small></span>
+        </div>
+        <button class="chat-close" type="button" aria-label="Закрыть чат" data-i18n-aria-label="chatClose">×</button>
+      </div>
+      <div class="chat-conversation" aria-live="polite">
+        <span class="chat-time" data-i18n="chatTime">Обычно отвечаем в WhatsApp</span>
+        <p class="chat-greeting" data-i18n="chatGreeting">Здравствуйте! Напишите нам — сообщение откроется в WhatsApp, и бригада ответит вам там.</p>
+      </div>
+      <form class="chat-form" id="chat-form">
+        <label class="visually-hidden" for="chat-message" data-i18n="chatMessageLabel">Ваше сообщение</label>
+        <textarea id="chat-message" rows="2" maxlength="1000" required placeholder="Напишите сообщение..." data-i18n-placeholder="chatPlaceholder"></textarea>
+        <button class="chat-send" type="submit"><span data-i18n="chatSend">Отправить</span><span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="chat-note" data-i18n="chatDelivery">Переписка продолжится в WhatsApp.</p>
+    </section>
+    <button class="whatsapp-float" id="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-widget" aria-label="Открыть чат" data-i18n-aria-label="chatOpen">
+      <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5Z"></path><path d="M8.2 8.1c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.4 0 .6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.4-1-.2-2.2-.8-3.4-1.9-1-.9-1.7-2.1-1.9-3.1-.2-.9.1-1.6.5-2.2Z"></path></svg>
+      <span data-chat-toggle-label data-i18n="chatOpenButton">Написать нам</span>
+    </button>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true">J</span><span class="brand-name">Jardinería <span class="brand-light">del Sol</span></span></a>
+      <span data-i18n="footerLine">Уход за садами и бассейнами · Марбелья</span>
+      <span>© <span data-year></span> Jardinería del Sol</span>
+    </footer>
+  </body>
+</html>
