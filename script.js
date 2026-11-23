@@ -6,7 +6,18 @@ const translations = {
     title: "Jardinería del Sol | Сады и бассейны в Марбелье",
     description: "Уход за садами, бассейнами и пальмами в Марбелье. Полив, сезонное обслуживание и забота о вашем участке.",
     brandAria: "Jardinería del Sol — на главную", navAria: "Основная навигация", languageAria: "Выбрать язык",
-    navServices: "Услуги", navAbout: "О нас", navContact: "Контакты", navCta: "Заказать уход",
+    navServices: "Услуги", navWorks: "Работы", navAbout: "О нас", navContact: "Контакты", navCta: "Заказать уход",
+    worksDocumentTitle: "Наши работы | Jardinería del Sol",
+    worksDescription: "Фотографии садов и участков, за которыми ухаживает Jardinería del Sol в Марбелье.",
+    worksEyebrow: "НАШИ ПРОЕКТЫ · МАРБЕЛЬЯ",
+    worksHeading: "Сады, созданные<br>для <em>жизни.</em>",
+    worksIntro: "Посмотрите, как выглядят участки, которым мы дарим заботу и внимание.",
+    worksBack: "На главную", worksCta: "Нужен такой сад?", worksCtaButton: "Обсудить ваш участок",
+    worksPhotoAlt: "Фотография сада, проект",
+    worksCardLabel: "САДЫ И БЛАГОУСТРОЙСТВО", worksGalleryLabel: "Галерея работ",
+    worksLightboxClose: "Закрыть фотографию",
+    worksLightboxPrevious: "Предыдущая фотография",
+    worksLightboxNext: "Следующая фотография",
     menuOpen: "Открыть меню", menuClose: "Закрыть меню", heroImage: "Цветущий средиземноморский сад",
     heroEyebrow: "САДЫ, КОТОРЫЕ РАДУЮТ КАЖДЫЙ ДЕНЬ",
     heroTitle: "Ваш сад —<br>ваше место <em>силы.</em>",
@@ -72,7 +83,18 @@ const translations = {
     title: "Jardinería del Sol | Gardens and pools in Marbella",
     description: "Garden, pool and palm tree care in Marbella. Irrigation, seasonal maintenance and attentive care for your outdoor space.",
     brandAria: "Jardinería del Sol — home", navAria: "Main navigation", languageAria: "Choose language",
-    navServices: "Services", navAbout: "About us", navContact: "Contact", navCta: "Request garden care",
+    navServices: "Services", navWorks: "Our work", navAbout: "About us", navContact: "Contact", navCta: "Request garden care",
+    worksDocumentTitle: "Our work | Jardinería del Sol",
+    worksDescription: "Photos of gardens and outdoor spaces cared for by Jardinería del Sol in Marbella.",
+    worksEyebrow: "OUR PROJECTS · MARBELLA",
+    worksHeading: "Gardens made<br>for <em>living.</em>",
+    worksIntro: "See the outdoor spaces we look after with care and attention.",
+    worksBack: "Back to home", worksCta: "Dreaming of a garden like this?", worksCtaButton: "Talk about your garden",
+    worksPhotoAlt: "Garden project photograph",
+    worksCardLabel: "GARDENS AND LANDSCAPING", worksGalleryLabel: "Project gallery",
+    worksLightboxClose: "Close photo",
+    worksLightboxPrevious: "Previous photo",
+    worksLightboxNext: "Next photo",
     menuOpen: "Open menu", menuClose: "Close menu", heroImage: "A blooming Mediterranean garden",
     heroEyebrow: "GARDENS TO ENJOY EVERY DAY",
     heroTitle: "Your garden —<br>your place to <em>unwind.</em>",
@@ -138,7 +160,18 @@ const translations = {
     title: "Jardinería del Sol | Jardines y piscinas en Marbella",
     description: "Cuidado de jardines, piscinas y palmeras en Marbella. Riego, mantenimiento de temporada y atención para tu espacio exterior.",
     brandAria: "Jardinería del Sol — inicio", navAria: "Navegación principal", languageAria: "Elegir idioma",
-    navServices: "Servicios", navAbout: "Quiénes somos", navContact: "Contacto", navCta: "Solicitar cuidado",
+    navServices: "Servicios", navWorks: "Trabajos", navAbout: "Quiénes somos", navContact: "Contacto", navCta: "Solicitar cuidado",
+    worksDocumentTitle: "Nuestros trabajos | Jardinería del Sol",
+    worksDescription: "Fotos de jardines y espacios exteriores cuidados por Jardinería del Sol en Marbella.",
+    worksEyebrow: "NUESTROS PROYECTOS · MARBELLA",
+    worksHeading: "Jardines para<br><em>disfrutar.</em>",
+    worksIntro: "Descubre algunos de los espacios exteriores que cuidamos con atención.",
+    worksBack: "Volver al inicio", worksCta: "¿Quieres un jardín así?", worksCtaButton: "Hablemos de tu jardín",
+    worksPhotoAlt: "Fotografía de un proyecto de jardín",
+    worksCardLabel: "JARDINES Y PAISAJISMO", worksGalleryLabel: "Galería de proyectos",
+    worksLightboxClose: "Cerrar foto",
+    worksLightboxPrevious: "Foto anterior",
+    worksLightboxNext: "Foto siguiente",
     menuOpen: "Abrir menú", menuClose: "Cerrar menú", heroImage: "Un jardín mediterráneo lleno de flores",
     heroEyebrow: "JARDINES PARA DISFRUTAR CADA DÍA",
     heroTitle: "Tu jardín —<br>tu lugar para <em>desconectar.</em>",
@@ -238,8 +271,8 @@ function setLanguage(language) {
   if (!copy) return;
 
   document.documentElement.lang = language;
-  document.title = copy.title;
-  document.querySelector('meta[name="description"]').content = copy.description;
+  document.title = copy[document.body.dataset.titleKey || "title"];
+  document.querySelector('meta[name="description"]').content = copy[document.body.dataset.descriptionKey || "description"];
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     element.textContent = copy[element.dataset.i18n];
@@ -777,3 +810,43 @@ soundButton.addEventListener("click", async () => {
   soundButton.setAttribute("aria-label", soundPlaying ? "Выключить атмосферную музыку" : "Включить атмосферную музыку");
   soundButton.querySelector(".sound-tooltip").textContent = soundPlaying ? "Выключить музыку" : "Включить музыку";
 });
+
+const gallery = document.querySelector("[data-works-gallery]");
+const lightbox = document.querySelector("#works-lightbox");
+if (gallery && lightbox && typeof lightbox.showModal === "function") {
+  const photos = [...gallery.querySelectorAll("[data-gallery-photo]")];
+  const lightboxImage = lightbox.querySelector(".works-lightbox-image");
+  const lightboxCounter = lightbox.querySelector(".works-lightbox-counter");
+  let activePhoto = 0;
+
+  function showPhoto(index) {
+    activePhoto = (index + photos.length) % photos.length;
+    const photo = photos[activePhoto].querySelector("img");
+    lightboxImage.src = photo.src;
+    lightboxImage.alt = photo.alt;
+    lightboxCounter.textContent = `${String(activePhoto + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
+  }
+
+  photos.forEach((photo, index) => {
+    photo.addEventListener("click", () => {
+      showPhoto(index);
+      lightbox.showModal();
+    });
+  });
+
+  lightbox.querySelector("[data-lightbox-close]").addEventListener("click", () => lightbox.close());
+  lightbox.querySelector("[data-lightbox-previous]").addEventListener("click", () => showPhoto(activePhoto - 1));
+  lightbox.querySelector("[data-lightbox-next]").addEventListener("click", () => showPhoto(activePhoto + 1));
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+  lightbox.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      lightbox.close();
+      return;
+    }
+    if (event.key === "ArrowLeft") showPhoto(activePhoto - 1);
+    if (event.key === "ArrowRight") showPhoto(activePhoto + 1);
+  });
+}
